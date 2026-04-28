@@ -1,0 +1,64 @@
+{% include base_path %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+<div class="pub-item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+
+    <h3 class="archive__item-title" itemprop="headline">
+      <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+    </h3>
+
+    <p class="pub-meta">
+      <i>{{ post.venue }}</i>, {{ post.date | date: "%Y" }}
+    </p>
+
+    {% if post.excerpt %}
+      <p class="pub-summary">
+        {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}
+      </p>
+    {% endif %}
+
+    <div class="pub-links">
+      {% if post.paperurl %}
+        <a class="pub-btn" href="{{ post.paperurl }}" title="PDF">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+          <span class="sr-only">PDF</span>
+        </a>
+      {% endif %}
+
+      {% if post.bibtexurl %}
+        <a class="pub-btn" href="{{ post.bibtexurl }}" title="BibTeX">
+          <i class="fas fa-quote-right" aria-hidden="true"></i>
+          <span class="sr-only">BibTeX</span>
+        </a>
+      {% endif %}
+
+      {% if post.github %}
+        <a class="pub-btn" href="{{ post.github }}" title="Code">
+          <i class="fab fa-github" aria-hidden="true"></i>
+          <span class="sr-only">Code</span>
+        </a>
+      {% endif %}
+
+      {% if post.link %}
+        <a class="pub-btn" href="{{ post.link }}" title="DOI / Publisher link">
+          <i class="ai ai-doi" aria-hidden="true"></i>
+          <span class="sr-only">DOI</span>
+        </a>
+      {% endif %}
+
+      {% if post.videourl %}
+        <a class="pub-btn" href="{{ base_path }}{{ post.url }}#video" title="Video">
+          <i class="fas fa-play" aria-hidden="true"></i>
+          <span class="sr-only">Video</span>
+        </a>
+      {% endif %}
+    </div>
+
+  </article>
+</div>

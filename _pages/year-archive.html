@@ -1,0 +1,40 @@
+---
+layout: archive
+permalink: /year-archive/
+title: "News & Achievements"
+author_profile: true
+redirect_from:
+  - /wordpress/blog-posts/
+---
+
+{% include base_path %}
+
+<div class="experience-timeline news-timeline">
+  {% for post in site.posts %}
+    <div class="experience-card news-timeline-card">
+      <div class="experience-dot"></div>
+
+      <div class="experience-content">
+        <div class="experience-header">
+          <h3>
+            <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+          </h3>
+
+          <span class="experience-period">
+            {{ post.date | date: "%B %d, %Y" }}
+          </span>
+        </div>
+
+        {% if post.excerpt %}
+          <p class="experience-excerpt">
+            {{ post.excerpt | strip_html | truncate: 180 }}
+          </p>
+        {% endif %}
+
+        <a class="project-link-btn" href="{{ base_path }}{{ post.url }}">
+          Read more →
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+</div>

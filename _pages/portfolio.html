@@ -1,0 +1,93 @@
+---
+layout: archive
+title: "Portfolio"
+permalink: /portfolio/
+author_profile: true
+---
+
+{% include base_path %}
+
+<h2>Experience</h2>
+<hr />
+
+<div class="experience-timeline">
+  {% assign experiences = site.portfolio | where: "category", "experience" | sort: "date" | reverse %}
+  
+  {% for post in experiences %}
+    <div class="experience-card">
+      <div class="experience-dot"></div>
+
+      <div class="experience-content">
+        <div class="experience-header">
+          <h3><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+          {% if post.period %}
+            <span class="experience-period">{{ post.period }}</span>
+          {% endif %}
+        </div>
+
+        {% if post.role or post.organisation %}
+          <p class="experience-meta">
+            {{ post.role }} · {{ post.organisation }}
+          </p>
+        {% endif %}
+
+        {% if post.location %}
+          <p class="experience-location">{{ post.location }}</p>
+        {% endif %}
+
+        {% if post.excerpt %}
+          <p class="experience-excerpt">
+            {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<h2>Projects</h2>
+<hr />
+
+{% assign projects = site.portfolio | where: "category", "project" | sort: "date" | reverse %}
+
+<div class="experience-timeline">
+  {% for post in projects %}
+    <div class="experience-card">
+      <div class="experience-dot"></div>
+
+      <div class="experience-content project-timeline">
+
+        <div class="experience-header">
+          <h3><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+
+          {% if post.period %}
+            <span class="experience-period">{{ post.period }}</span>
+          {% endif %}
+        </div>
+
+        {% if post.organisation %}
+          <p class="experience-meta">{{ post.organisation }}</p>
+        {% endif %}
+
+<!--         {% if post.image %}
+          <div class="project-image-timeline">
+            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+          </div>
+        {% endif %} -->
+
+        {% if post.excerpt %}
+          <p class="experience-excerpt">
+            {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}
+          </p>
+        {% endif %}
+
+        {% if post.projecturl %}
+          <a class="project-link-btn" href="{{ post.projecturl }}" target="_blank">
+            Visit Project →
+          </a>
+        {% endif %}
+
+      </div>
+    </div>
+  {% endfor %}
+</div>

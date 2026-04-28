@@ -1,0 +1,97 @@
+basics:
+  name: Ayoob Davoodi
+  label: PhD Researcher in Robot-Assisted Surgery
+  email: ayoob.davoodi@kuleuven.be
+  website: https://ayoob_davoodi.github.io
+  location:
+    city: Leuven
+    region: Flemish Region
+    countryCode: Belgium
+  summary: Robotics and Mechatronics Researcher with 6+ years of experience in robot-assisted systems, control, and real-time sensing integration.
+
+education:
+  - institution: Katholieke Universiteit Leuven
+    area: Ph.D. in Mechanical Engineering (Robotics, Automation, Mechatronics)
+    startDate: 2021
+    endDate: Present
+
+  - institution: University of Tehran
+    area: M.S. in Electrical Engineering (Control Systems and Robotics)
+    startDate: 2014
+    endDate: 2017
+
+  - institution: Iran University of Science and Technology
+    area: B.S. in Electrical Engineering (Control Engineering)
+    startDate: 2010
+    endDate: 2014
+
+
+skills:
+  - name: Robotics & Control
+    keywords:
+      - Robot-assisted surgery
+      - Control systems
+      - Sensor fusion
+      - Navigation
+
+  - name: Programming
+    keywords:
+      - C++
+      - Python
+      - Matlab
+      - Rust
+
+  - name: Tools
+    keywords:
+      - ROS
+      - PyTorch
+      - Linux
+      - Gazebo
+
+projects:
+  - name: AIRCARE
+    url: https://www.kuka.com
+    role: Robotic and Control Researcher
+    startDate: Dec 2024
+    endDate: Present
+    description: AI-Augmented Robotics for Cancer Point of Care.
+    highlights:
+      - Developing teleoperated and haptic robotic control for surgical tool manipulation.
+      - Implementing vision-based visual servoing for real-time tool alignment.
+
+  - name: ULTRATOPIA
+    role: Team Lead
+    url: https://www.kuka.com
+    startDate: Oct 2024
+    endDate: Nov 2025
+    description: KUKA Innovation Award-winning project on ultrasound robot-assisted drilling.
+    highlights:
+      - Led proposal development, system architecture, and team coordination.
+      - Designed a dual-arm collaborative robotic platform for ultrasound-guided drilling.
+
+  - name: FAROS
+    url: https://www.kuka.com
+    role: Robotic and Control Researcher
+    startDate: Jan 2021
+    endDate: Jun 2024
+    description: Functionally Accurate Robotic Surgery project funded by Horizon 2020.
+    highlights:
+      - Developed ultrasound-based guided navigation for spine surgery.
+      - Led experimental evaluations including ex-vivo, in-vivo, and cadaveric studies.
+
+awards:
+  - title: Winner of the KUKA Innovation Award 2025
+    awarder: KUKA Robotics
+    date: Jul 2024
+
+  - title: Best Paper Video Award
+    awarder: ICAR Robotics Conference
+    date: Jul 2023
+
+  - title: Research Mobility Grant Award
+    awarder: Prof. R. Snoeys Foundation, KU Leuven
+    date: May 2023
+
+languages: []
+interests: []
+references: []

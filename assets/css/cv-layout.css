@@ -1,0 +1,168 @@
+.cv-layout {
+  background: #f6f7f9;
+}
+
+.cv-container {
+  max-width: 920px;
+  margin: 2rem auto;
+  padding: 2rem 2.3rem;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+}
+
+.cv-section {
+  margin-bottom: 1.15rem;
+}
+
+.cv-header {
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.cv-header h1 {
+  margin-bottom: 0.2rem;
+  font-size: 2rem;
+}
+
+.cv-header h2 {
+  border: none;
+  margin: 0 0 0.8rem 0;
+  color: #555;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.cv-contact,
+.cv-profiles {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+  font-size: 0.9rem;
+}
+
+.cv-contact-item i,
+.cv-profile-link i,
+.cv-section h2 i,
+.cv-item-link i {
+  margin-right: 0.35rem;
+}
+
+.cv-section h2 {
+  margin: 0 0 0.45rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 1.18rem;
+  font-weight: 700;
+}
+
+.cv-section p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.cv-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.cv-item {
+  margin-bottom: 0.65rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid #edf0f3;
+  border-radius: 12px;
+  background: #fbfbfc;
+}
+
+.cv-item-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.cv-item-title {
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.cv-item-date {
+  font-size: 0.82rem;
+  color: #777;
+  white-space: nowrap;
+}
+
+.cv-item-subtitle {
+  margin-top: 0.12rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.cv-item-detail {
+  margin-top: 0.22rem;
+  line-height: 1.4;
+  color: #333;
+}
+
+.cv-highlights {
+  margin: 0.25rem 0 0 0;
+  padding-left: 1.1rem;
+}
+
+.cv-highlights li {
+  margin-bottom: 0.08rem;
+  line-height: 1.35;
+}
+
+.cv-item-link {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.cv-item-link a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cv-skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.55rem;
+}
+
+.cv-skill-category {
+  padding: 0.65rem 0.8rem;
+  border-radius: 12px;
+  background: #f7f8fa;
+  border: 1px solid #e8ebef;
+}
+
+.cv-skill-category h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.cv-skill-list {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.cv-skill-list li {
+  margin-bottom: 0.03rem;
+  line-height: 1.25;
+}
+
+@media (max-width: 600px) {
+  .cv-container {
+    margin: 1rem;
+    padding: 1.2rem;
+  }
+
+  .cv-item-header {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+}

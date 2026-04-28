@@ -1,0 +1,94 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <article class="page portfolio-page">
+
+    <div class="page__inner-wrap">
+
+      <header>
+        <h1 class="page__title">{{ page.title }}</h1>
+
+        {% if page.period %}
+          <p class="portfolio-period">{{ page.period }}</p>
+        {% endif %}
+
+        {% if page.role or page.organisation %}
+          <p class="portfolio-meta">
+            {% if page.role %}{{ page.role }}{% endif %}
+            {% if page.role and page.organisation %} · {% endif %}
+            {% if page.organisation %}{{ page.organisation }}{% endif %}
+          </p>
+        {% endif %}
+
+        {% if page.location %}
+          <p class="portfolio-location">{{ page.location }}</p>
+        {% endif %}
+
+        {% if page.projecturl %}
+          <a class="portfolio-link-btn" href="{{ page.projecturl }}" target="_blank" rel="noopener">
+            Visit Project →
+          </a>
+        {% endif %}
+      </header>
+
+      {% if page.videourl %}
+        <div class="portfolio-hero-media" id="video">
+          <div class="portfolio-video-shell">
+            <video
+              id="portfolio-video"
+              class="portfolio-video-player"
+              playsinline
+              preload="metadata"
+              {% if page.video_poster %}poster="{{ page.video_poster | relative_url }}"{% endif %}
+            >
+              <source src="{{ page.videourl | relative_url }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+
+            <button type="button" class="portfolio-video-overlay" aria-label="Play video">
+              <span class="portfolio-play-icon">
+                <i class="fas fa-play" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const video = document.getElementById("portfolio-video");
+            const overlay = document.querySelector(".portfolio-video-overlay");
+
+            if (!video || !overlay) return;
+
+            overlay.addEventListener("click", function () {
+              video.controls = true;
+              video.play();
+              overlay.classList.add("hidden");   // ✅ FIX
+            });
+
+            video.addEventListener("pause", () => overlay.classList.remove("hidden"));
+            video.addEventListener("ended", () => overlay.classList.remove("hidden"));
+          });
+        </script>
+
+      {% elsif page.image %}
+        <div class="portfolio-hero-media">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+        </div>
+      {% endif %}
+
+      <section class="page__content">
+        {{ content }}
+      </section>
+
+    </div>
+
+    
+  </article>
+</div>

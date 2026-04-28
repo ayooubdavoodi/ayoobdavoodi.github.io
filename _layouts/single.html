@@ -1,0 +1,182 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
+  {% include page__hero.html %}
+{% endif %}
+
+{% if page.url != "/" and site.breadcrumbs %}
+  {% unless paginator %}
+    {% include breadcrumbs.html %}
+  {% endunless %}
+{% endif %}
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
+    {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
+
+    <div class="page__inner-wrap">
+      {% unless page.header.overlay_color or page.header.overlay_image %}
+        <header>
+          {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+          {% if page.read_time %}
+            <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
+          {% endif %}
+          {% if page.modified %}
+            <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.modified | date: "%Y-%m-%d" }}">{{ page.modified | date: "%B %d, %Y" }}</time></p>
+          {% endif %}
+        
+          {% if page.collection == 'teaching' %}
+            <p>{{ page.type }}, <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }}</p>
+          {% elsif page.venue and page.date %}
+            <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }}</p>
+          {% elsif page.date %}
+            <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
+          {% endif %}
+        </header>
+      {% endunless %}
+
+      <section class="page__content" itemprop="text">
+        {{ content }}
+
+        {% if page.videourl %}
+          <div id="video" class="pub-video">
+            <h3 class="pub-video-title">Video</h3>
+
+            <div class="pub-video-shell">
+              <video
+                id="paper-video"
+                class="pub-video-player"
+                controls
+                playsinline
+                preload="metadata"
+                {% if page.video_poster %}poster="{{ page.video_poster | relative_url }}"{% endif %}
+              >
+                <source src="{{ page.videourl | relative_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+
+              <button type="button" class="pub-video-overlay" aria-label="Play video">
+                <span class="pub-video-play-icon">
+                  <i class="fas fa-play" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const video = document.getElementById("paper-video");
+              const overlay = document.querySelector(".pub-video-overlay");
+
+              if (!video || !overlay) return;
+
+              function showOverlay() {
+                overlay.classList.remove("is-hidden");
+              }
+
+              function hideOverlay() {
+                overlay.classList.add("is-hidden");
+              }
+
+              overlay.addEventListener("click", function () {
+                video.play();
+                hideOverlay();
+              });
+
+              video.addEventListener("play", hideOverlay);
+              video.addEventListener("pause", showOverlay);
+              video.addEventListener("ended", showOverlay);
+            });
+          </script>
+        {% endif %}
+
+        <div class="pub-single-links">
+          {% if page.paperurl %}
+            <a class="pub-btn" href="{{ page.paperurl | relative_url }}" title="PDF">
+              <i class="fas fa-file-pdf" aria-hidden="true"></i>
+              <span class="sr-only">PDF</span>
+            </a>
+          {% endif %}
+
+          {% if page.bibtexurl %}
+            <a class="pub-btn" href="{{ page.bibtexurl | relative_url }}" title="BibTeX">
+              <i class="fas fa-quote-right" aria-hidden="true"></i>
+              <span class="sr-only">BibTeX</span>
+            </a>
+          {% endif %}
+
+          {% if page.github %}
+            <a class="pub-btn" href="{{ page.github }}" title="Code">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span class="sr-only">Code</span>
+            </a>
+          {% endif %}
+
+          {% if page.link %}
+            <a class="pub-btn" href="{{ page.link }}" title="DOI / Publisher link">
+              <i class="ai ai-doi" aria-hidden="true"></i>
+              <span class="sr-only">DOI</span>
+            </a>
+          {% endif %}
+
+          {% if page.videourl %}
+            <a class="pub-btn" href="#video" title="Video">
+              <i class="fas fa-play" aria-hidden="true"></i>
+              <span class="sr-only">Video</span>
+            </a>
+          {% endif %}
+        </div>
+
+        {% if page.citation %}
+          <div class="pub-citation-box">
+            <strong>Recommended citation</strong><br>
+            {{ page.citation }}
+          </div>
+        {% endif %}
+
+        {% if page.link %}
+          <div style="margin-top: 1rem;">
+            <a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a>
+          </div>
+        {% endif %}
+      </section>
+
+      <footer class="page__meta">
+        {% if site.data.ui-text[site.locale].meta_label %}
+          <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
+        {% endif %}
+        {% include page__taxonomy.html %}
+      </footer>
+
+      {% if page.share %}{% include social-share.html %}{% endif %}
+
+      {% include post_pagination.html %}
+    </div>
+
+    {% if site.comments.provider and page.comments %}
+      {% include comments.html %}
+    {% endif %}
+  </article>
+
+  {% if page.id and page.related and site.related_posts.size > 0 %}
+    <div class="page__related">
+      {% if site.data.ui-text[site.locale].related_label %}
+        <h4 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h4>
+      {% endif %}
+      <div class="grid__wrapper">
+        {% for post in site.related_posts limit:4 %}
+          {% include archive-single.html type="grid" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>
